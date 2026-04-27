@@ -2,15 +2,11 @@ import { motion } from 'framer-motion'
 import { 
   ShieldCheck, 
   Zap, 
-  Clock, 
   Camera, 
-  FileText, 
   Database, 
   ArrowRight, 
   CheckCircle2, 
-  Layout, 
-  BrainCircuit,
-  MessageSquare
+  BrainCircuit
 } from 'lucide-react'
 
 function App() {
