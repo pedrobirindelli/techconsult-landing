@@ -10,7 +10,7 @@ import {
 } from 'lucide-react'
 
 function App() {
-  const PRODUCTION_URL = "https://fielddatacap.com"
+  const PRODUCTION_URL = "https://app.fielddatacap.com"
 
   const containerVariants = {
     hidden: { opacity: 0 },
