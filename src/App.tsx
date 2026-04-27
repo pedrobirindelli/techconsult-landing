@@ -244,29 +244,7 @@ function App() {
             </div>
 
             <div className="form-container">
-              <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
-                <div className="grid" style={{gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '0'}}>
-                  <div className="form-group">
-                    <label>Seu Nome</label>
-                    <input type="text" placeholder="Nome Completo" />
-                  </div>
-                  <div className="form-group">
-                    <label>E-mail Corporativo</label>
-                    <input type="email" placeholder="email@empresa.com.br" />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label>Empresa / CREA</label>
-                  <input type="text" placeholder="Sua empresa ou registro profissional" />
-                </div>
-                <div className="form-group">
-                  <label>Como podemos ajudar?</label>
-                  <textarea rows={4} placeholder="Conte-nos sobre seu volume de laudos atual..."></textarea>
-                </div>
-                <button type="submit" className="btn-submit">
-                  Quero otimizar meus laudos <ArrowRight className="inline ml-2" size={20} />
-                </button>
-              </form>
+              <DemoForm />
             </div>
           </div>
         </section>
@@ -280,6 +258,135 @@ function App() {
         <p className="text-muted text-sm">© 2026 TechConsult - Soluções Inteligentes para Engenharia Legal.</p>
       </footer>
     </div>
+  )
+}
+
+function DemoForm() {
+  const [status, setStatus] = (window as any).React?.useState?.('idle') || ['idle', () => {}]; // Handle possible React not loaded in some envs
+  // Using actual useState since this is a Vite app
+  const [formData, setFormData] = (window as any).React?.useState?.({
+    name: '',
+    email: '',
+    company: '',
+    message: ''
+  }) || [{name: '', email: '', company: '', message: ''}, () => {}];
+
+  // Wait, I should use standard React hooks
+  return <ActualForm />;
+}
+
+import { useState } from 'react'
+
+function ActualForm() {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: ''
+  })
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus('loading')
+
+    try {
+      const response = await fetch('https://agfkghlczqpyikphmsog.supabase.co/functions/v1/send-demo-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) throw new Error('Falha ao enviar e-mail')
+
+      setStatus('success')
+      setFormData({ name: '', email: '', company: '', message: '' })
+    } catch (error) {
+      console.error(error)
+      setStatus('error')
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="bg-emerald-50 border border-emerald-200 p-8 rounded-2xl text-center">
+        <CheckCircle2 className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
+        <h3 className="text-2xl font-bold text-emerald-900 mb-2">Solicitação Enviada!</h3>
+        <p className="text-emerald-700">Obrigado pelo interesse. Em breve nossa equipe entrará em contato com você.</p>
+        <button 
+          onClick={() => setStatus('idle')}
+          className="mt-6 text-emerald-600 font-bold hover:underline"
+        >
+          Enviar outra mensagem
+        </button>
+      </div>
+    )
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="grid md:grid-cols-2 gap-4">
+        <div className="form-group">
+          <label>Seu Nome</label>
+          <input 
+            type="text" 
+            placeholder="Nome Completo" 
+            required 
+            value={formData.name}
+            onChange={(e) => setFormData({...formData, name: e.target.value})}
+            disabled={status === 'loading'}
+          />
+        </div>
+        <div className="form-group">
+          <label>E-mail Corporativo</label>
+          <input 
+            type="email" 
+            placeholder="email@empresa.com.br" 
+            required 
+            value={formData.email}
+            onChange={(e) => setFormData({...formData, email: e.target.value})}
+            disabled={status === 'loading'}
+          />
+        </div>
+      </div>
+      <div className="form-group">
+        <label>Empresa / CREA</label>
+        <input 
+          type="text" 
+          placeholder="Sua empresa ou registro profissional" 
+          required 
+          value={formData.company}
+          onChange={(e) => setFormData({...formData, company: e.target.value})}
+          disabled={status === 'loading'}
+        />
+      </div>
+      <div className="form-group">
+        <label>Como podemos ajudar?</label>
+        <textarea 
+          rows={4} 
+          placeholder="Conte-nos sobre seu volume de laudos atual..." 
+          value={formData.message}
+          onChange={(e) => setFormData({...formData, message: e.target.value})}
+          disabled={status === 'loading'}
+        ></textarea>
+      </div>
+      
+      {status === 'error' && (
+        <p className="text-red-500 text-sm font-bold">Ocorreu um erro ao enviar. Por favor, tente novamente.</p>
+      )}
+
+      <button 
+        type="submit" 
+        className="btn-submit w-full flex justify-center items-center gap-2"
+        disabled={status === 'loading'}
+      >
+        {status === 'loading' ? 'Enviando...' : (
+          <>Quero otimizar meus laudos <ArrowRight size={20} /></>
+        )}
+      </button>
+    </form>
   )
 }
 
