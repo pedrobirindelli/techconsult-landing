@@ -262,7 +262,6 @@ function App() {
 }
 
 import { useState } from 'react'
-import { CheckCircle2 } from 'lucide-react'
 
 function ActualForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
