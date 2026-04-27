@@ -244,7 +244,7 @@ function App() {
             </div>
 
             <div className="form-container">
-              <DemoForm />
+              <ActualForm />
             </div>
           </div>
         </section>
@@ -261,21 +261,8 @@ function App() {
   )
 }
 
-function DemoForm() {
-  const [status, setStatus] = (window as any).React?.useState?.('idle') || ['idle', () => {}]; // Handle possible React not loaded in some envs
-  // Using actual useState since this is a Vite app
-  const [formData, setFormData] = (window as any).React?.useState?.({
-    name: '',
-    email: '',
-    company: '',
-    message: ''
-  }) || [{name: '', email: '', company: '', message: ''}, () => {}];
-
-  // Wait, I should use standard React hooks
-  return <ActualForm />;
-}
-
 import { useState } from 'react'
+import { CheckCircle2 } from 'lucide-react'
 
 function ActualForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
