@@ -3,7 +3,6 @@ import {
   ShieldCheck, 
   Zap, 
   Camera, 
-  Database, 
   ArrowRight, 
   CheckCircle2, 
   BrainCircuit

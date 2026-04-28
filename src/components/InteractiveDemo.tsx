@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
-  ChevronRight, ChevronLeft, Shield, Users, FileText, 
+  ChevronLeft, Shield, Users, FileText, 
   Smartphone, BarChart3, Sparkles, Download, 
   ArrowRight, Layout, Zap, Camera, Mic, Type, Plus,
   CheckCircle2
