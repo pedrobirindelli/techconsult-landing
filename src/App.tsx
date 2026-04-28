@@ -8,6 +8,7 @@ import {
   CheckCircle2, 
   BrainCircuit
 } from 'lucide-react'
+import InteractiveDemo from './components/InteractiveDemo'
 
 function App() {
   const PRODUCTION_URL = "https://app.fielddatacap.com"
@@ -133,105 +134,11 @@ function App() {
         <section id="como-funciona" style={{background: 'linear-gradient(180deg, rgba(99, 102, 241, 0.03) 0%, rgba(99, 102, 241, 0.08) 100%)', padding: '100px 0'}}>
           <div className="container">
             <div className="section-title">
-              <h2 className="text-primary">Como a mágica acontece</h2>
+              <h2 className="text-primary">Conheça a Experiência TechConsult</h2>
               <p className="text-muted">Do campo ao laudo final: um fluxo pensado para a alta performance.</p>
             </div>
 
-            <div className="steps-container" style={{display: 'flex', flexDirection: 'column', gap: '3rem'}}>
-              
-              {/* Passo 1 & 2 */}
-              <div className="grid" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem'}}>
-                <motion.div 
-                  className="step-card bg-white p-8 rounded-2xl border border-slate-100 shadow-sm"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="step-number text-indigo-100 font-bold text-6xl mb-[-2rem]">01</div>
-                  <div className="flex items-center gap-4 mb-4 relative">
-                    <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl"><Database size={32} /></div>
-                    <h3 className="text-xl font-bold">Configuração Mestra</h3>
-                  </div>
-                  <p className="text-slate-600 leading-relaxed">
-                    O engenheiro configura o formulário sob medida para os vistoriantes. Fotos e áudios costumam ser o foco, mas você pode criar campos diversos para capturar cada detalhe necessário.
-                  </p>
-                </motion.div>
-
-                <motion.div 
-                  className="step-card bg-white p-8 rounded-2xl border border-slate-100 shadow-sm"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                >
-                  <div className="step-number text-indigo-100 font-bold text-6xl mb-[-2rem]">02</div>
-                  <div className="flex items-center gap-4 mb-4 relative">
-                    <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl"><Camera size={32} /></div>
-                    <h3 className="text-xl font-bold">Coleta Resiliente</h3>
-                  </div>
-                  <p className="text-slate-600 leading-relaxed">
-                    O vistoriante vai a campo e registra tudo em imagem e áudio. Liberdade total para usar Web ou App, sendo o App ultra-resiliente para trabalhar 100% offline. O sistema avisa o momento exato de sincronizar.
-                  </p>
-                </motion.div>
-              </div>
-
-              {/* Passo 3 & 4 */}
-              <div className="grid" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem'}}>
-                <motion.div 
-                  className="step-card bg-white p-8 rounded-2xl border border-slate-100 shadow-sm"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <div className="step-number text-indigo-100 font-bold text-6xl mb-[-2rem]">03</div>
-                  <div className="flex items-center gap-4 mb-4 relative">
-                    <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl"><Zap size={32} /></div>
-                    <h3 className="text-xl font-bold">Consolidação de Dados</h3>
-                  </div>
-                  <p className="text-slate-600 leading-relaxed">
-                    O sistema recebe, consolida e analisa automaticamente as imagens, áudios e informações. Nada se perde, tudo se organiza para alimentar o cérebro digital da plataforma.
-                  </p>
-                </motion.div>
-
-                <motion.div 
-                  className="step-card bg-white p-8 rounded-2xl border border-slate-100 shadow-sm"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <div className="step-number text-indigo-100 font-bold text-6xl mb-[-2rem]">04</div>
-                  <div className="flex items-center gap-4 mb-4 relative">
-                    <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl"><BrainCircuit size={32} /></div>
-                    <h3 className="text-xl font-bold">Alquimia de Laudo</h3>
-                  </div>
-                  <p className="text-slate-600 leading-relaxed">
-                    Os dados de campo se fundem a referências técnicas (manuais e regras) e fontes de inspiração (seus laudos antigos). Com o seu template padrão, a IA gera um rascunho estruturado exatamente como você deseja.
-                  </p>
-                </motion.div>
-              </div>
-
-              {/* Passo 5 - Destaque Final */}
-              <motion.div 
-                className="bg-indigo-600 text-white p-10 rounded-3xl shadow-xl flex flex-col md:flex-row items-center gap-8"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-              >
-                <div className="p-5 bg-white/10 rounded-2xl"><CheckCircle2 size={48} /></div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-2">Revisão do Perito</h3>
-                  <p className="text-indigo-100 leading-relaxed text-lg">
-                    Um laudo técnico é gerado para sua revisão final. Por se tratar de IA, a supervisão humana é essencial para garantir a precisão e integridade. 
-                  </p>
-                  <p className="mt-4 font-black tracking-widest text-xl uppercase italic opacity-80 border-t border-white/20 pt-4">
-                    Lembre-se sempre: O perito é você.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
+            <InteractiveDemo />
           </div>
         </section>
 
